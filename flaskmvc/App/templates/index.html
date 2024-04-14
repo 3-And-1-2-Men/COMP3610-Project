@@ -1,0 +1,35 @@
+{% block content %}
+<div id="welcome">
+    <h1><span class="ombre-text">Welcome to the Music Mood Classifier-inator!</span></h1>
+    <p>Let's tune into the right vibe together. 
+        Share a bit about your mood or what you're feeling, and we'll craft a custom playlist just for you. 
+        Type in a sentence or a few words to get started on your musical journey!</p>
+    <div><textarea id="textarea" placeholder="Enter text here..."></textarea><br></div>
+    <button id="submit-btn" onclick="getData()"><b>Submit Text</b></button>
+</div>
+
+<div id="results" style="display: none;">
+    <h1><span class="ombre-text">Detected Mood</span></h1>
+    <p id="mood-text"></p>
+    <h1><span class="ombre-text">Playlist Link</span></h1>
+    <p id="result-text"></p>
+
+</div>
+
+<script>
+    function getData() {
+        var textData = document.getElementById('textarea').value;
+
+        console.log("Text data:", textData);
+        var playlist_link = '<a href="https://spotify.com">Spotify</a>';
+
+        var resultsDiv = document.getElementById('results');
+        var moodText = document.getElementById('mood-text');
+        var resultText = document.getElementById('result-text');
+
+        moodText.innerHTML = 'Happy';
+        resultText.innerHTML = playlist_link;
+        resultsDiv.style.display = 'block';
+    }
+</script>
+{% endblock %}
