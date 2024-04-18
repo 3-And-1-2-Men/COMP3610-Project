@@ -1,2 +1,2 @@
-scripts
 data/tracks_features.csv
+.cache*
