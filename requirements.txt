@@ -16,3 +16,5 @@ Flask-Migrate==3.1.0
 Werkzeug==2.2.3
 gevent==22.10.2
 mysqlclient==2.1.1
+tensorflow==2.15.1
+spotipy==2.23.0

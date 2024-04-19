@@ -21,7 +21,7 @@ body {
 }
 
 #welcome p{
-    width: 60%;
+    width: 70%;
     font-size: 13pt;
     color: white;
     margin-left: auto;
@@ -31,6 +31,7 @@ body {
 .ombre-text{
     background: linear-gradient(to right, #128878, #00fff2, #ffffff);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 
@@ -70,6 +71,7 @@ body {
     color:  #000000;
     font-size: 17px;
     font-family:'Times New Roman', Times, serif;
+    padding: 7px;
 }
 
 #submit-btn:hover{
@@ -87,6 +89,7 @@ body {
     margin-top: 5%;
     padding: 20px;
     border: #128878 2px solid;
+    margin-bottom: 50px;
 }
 
 #results p{

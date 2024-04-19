@@ -5,7 +5,10 @@ def load_config(app, overrides):
         app.config.from_object('App.custom_config')
     else:
         app.config.from_object('App.default_config')
+        
     app.config.from_prefixed_env()
+    app.config['SPOTIPY_CLIENT_ID'] = os.environ.get('SPOTIPY_CLIENT_ID')
+    app.config['SPOTIPY_CLIENT_SECRET'] = os.environ.get('SPOTIPY_CLIENT_SECRET')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['PREFERRED_URL_SCHEME'] = 'https'
