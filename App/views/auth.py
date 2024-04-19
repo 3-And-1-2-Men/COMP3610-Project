@@ -12,11 +12,7 @@ auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
 
 '''
 Page/Action Routes
-'''    
-@auth_views.route('/users', methods=['GET'])
-def get_user_page():
-    users = get_all_users()
-    return render_template('users.html', users=users)
+'''
 
 @auth_views.route('/identify', methods=['GET'])
 @jwt_required()

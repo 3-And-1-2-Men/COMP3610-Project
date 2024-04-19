@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}Music Mood Classifier-inator{% endblock %}
+{% block page %}Home{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+<div id="welcome">
+    <h1><span class="ombre-text">Welcome to the Music Mood Classifier-inator!</span></h1>
+    <p>Let's tune into the right vibe together. 
+        Share a bit about your mood or what you're feeling, and we'll craft a custom playlist just for you. 
+        Type in a sentence or a few words to get started on your musical journey!<br>
+        (e.g., "intense gym workout session")</p><br>
+    <div><textarea id="textarea" placeholder="Enter text here..."></textarea></div><br><br>
+    <button id="submit-btn" onclick="getData()"><b>Submit Text</b></button>
+</div>
+
+<div id="results" style="display: none;">
+    <h3><span class="ombre-text">Your Current Mood</span></h3>
+    <p id="mood-text"></p>
+    <p>We've created a playlist just for you!</p>
+    <span id="result-text"></span>
+    <br><br>
+</div>
+
+<script>
+    function getData() {
+        var textData = document.getElementById('textarea').value;
+        console.log("Text data:", textData);
+
+        fetch('/get-emotion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: textData })
+        })
+        .then(response => response.json())
+        .then(data => {
+            displayResults(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function displayResults(data) {
+        console.log("Emotion:", data['emotion']);
+        console.log("Link:", data['playlist_link']);
+        var playlist_link = `<a href="${data['playlist_link']}" target="_blank">Click Here to Listen to It!</a>`;
+        var resultsDiv = document.getElementById('results');
+        var moodText = document.getElementById('mood-text');
+        var resultText = document.getElementById('result-text');
+
+        resultsDiv.style.display = 'block';
+        moodText.innerHTML = `<b><u>${data['emotion']}</u></b>`;
+        resultText.innerHTML = playlist_link;
+
+        // Scroll to the results section
+        resultsDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+{% endblock %}
